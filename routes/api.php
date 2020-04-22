@@ -1,11 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
-
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 	
 	Route::group(['middleware' => ['api']], function () {
 		Route::post('/auth/signup', [
@@ -14,6 +9,10 @@ use Illuminate\Http\Request;
 		
 		Route::post('/auth/signin', [
 			'uses' => 'AuthController@signin',
+		]);
+		
+		Route::get('/sections', [
+			'uses' => 'Forum\SectionController@index',
 		]);
 		
 		Route::group(['middleware' => 'jwt.auth'], function () {
