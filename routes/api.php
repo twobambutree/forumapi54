@@ -17,8 +17,8 @@ use Illuminate\Http\Request;
 		]);
 		
 		Route::group(['middleware' => 'jwt.auth'], function () {
-			Route::get('/test', function () {
-				dd('You are authenticated');
-			});
+			Route::get('/user', [
+				'uses' => 'UserController@index',
+			]);
 		});
 	});
