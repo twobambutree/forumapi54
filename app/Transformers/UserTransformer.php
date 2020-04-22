@@ -10,8 +10,8 @@ class UserTransformer extends TransformerAbstract
 	public function transform(User $user)
 	{
 		return [
-			'username' => $user->username,
-			// avatar
+			'username'  => $user->username,
+			'avatar'    => $user->avatar(),
 		];
 	}
 }
