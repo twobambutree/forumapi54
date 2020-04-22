@@ -28,8 +28,13 @@ use Illuminate\Http\Request;
 				'uses' => 'UserController@index',
 			]);
 			
+			
 			Route::post('topic', [
 				'uses' => 'Forum\TopicController@store',
+			]);
+			
+			Route::post('topic/{topic}/post', [
+				'uses' => 'Forum\PostController@store',
 			]);
 		});
 	});
