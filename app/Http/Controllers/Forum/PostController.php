@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Forum;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Transformers\PostTransformer;
 use App\Http\Requests\Forum\CreatePostFormRequest;
 
 class PostController extends Controller
@@ -15,5 +16,11 @@ class PostController extends Controller
 			'body'      => $request->json('body'),
 			'user_id'   => $request->user()->id,
 		]);
+		
+		return fractal()
+			->item($post)
+			->includeUser()
+			->transformWith(new PostTransformer)
+			->toArray();
 	}
 }

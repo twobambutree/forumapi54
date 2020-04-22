@@ -9,7 +9,8 @@ class TopicTransformer extends TransformerAbstract
 {
 	protected $availableIncludes =[
 		'user',
-		'section'
+		'section',
+		'posts'
 	];
 	
 	public function transform(Topic $topic)
@@ -31,5 +32,10 @@ class TopicTransformer extends TransformerAbstract
 	public function includeSection(Topic $topic)
 	{
 		return $this->item($topic->section, new SectionTransformer());
+	}
+	
+	public function includePosts(Topic $topic)
+	{
+		return $this->collection($topic->posts, new PostTransformer());
 	}
 }
