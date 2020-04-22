@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Models\Topic;
 use App\Models\Section;
+use App\Transformers\TopicTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Forum\CreateTopicFormRequest;
@@ -28,5 +29,11 @@ class TopicController extends Controller
 			'body'  => $request->json('body'),
 			'section_id' => $request->json('section_id'),
 		]);
+		
+		return fractal()
+			->item($topic)
+			->includeUser()
+			->transformWith(new TopicTransformer)
+			->toArray();
 	}
 }
